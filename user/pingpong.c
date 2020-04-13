@@ -17,14 +17,14 @@ main(int argc, char *argv[])
     //pid = wait(0);
     read(pipe2[0], buf, 10);
     write(pipe1[1], "ping", 5);
-    printf("%d: recieved %s\n", pid, buf);
+    printf("%d: recieved %s\n", getpid(), buf);
     
     close(pipe1[0]); close(pipe1[1]);
     close(pipe2[0]); close(pipe2[1]);
   } else if(pid == 0){
     write(pipe2[1], "pong", 5);
     read(pipe1[0], buf, 10);
-    printf("%d: recieved %s\n", pid, buf);
+    printf("%d: recieved %s\n", getpid(), buf);
     
     close(pipe1[0]); close(pipe1[1]);
     close(pipe2[0]); close(pipe2[1]);
